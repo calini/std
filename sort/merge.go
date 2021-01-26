@@ -1,9 +1,4 @@
-package main
-
-import (
-	"fmt"
-	"log"
-)
+package sort
 
 func MergeSort(arr []int) []int {
 
@@ -15,33 +10,27 @@ func MergeSort(arr []int) []int {
 }
 
 func merge(a, b []int) (result []int) {
-	i, j := 0, 0
 
-	for i < len(a) && j < len(b) {
-		if a[i] < b[j] {
-			result = append(result, a[i])
-			i++
+	for len(a) > 0 && len(b) > 0 {
+		if a[0] < b[0] {
+			result = append(result, a[0])
+			a = a[1:]
 		} else {
-			result = append(result, b[j])
-			j++
+			result = append(result, b[0])
+			b = b[1:]
 		}
 	}
 
-	if i < len(a) {
-		for ; i < len(a); i++ {
-			result = append(result, a[i])
-		}
+	if len(a) > 0 {
+		result = append(result, a...)
 	}
 
-	if j < len(b) {
-		for ; j < len(b); j++ {
-			result = append(result, b[j])
-		}
+	if len(b) > 0 {
+		result = append(result, b...)
 	}
 
 	return result
 }
-
 
 func IsSortedInts(arr []int) bool {
 	for i := 1; i < len(arr); i++ {
@@ -50,16 +39,4 @@ func IsSortedInts(arr []int) bool {
 		}
 	}
 	return true
-}
-
-func main() {
-	test := []int{0, 8, 3, 9, -3, 4, 1, -1, 2, 6}
-
-	test = MergeSort(test)
-
-	if IsSortedInts(test) {
-		fmt.Println("Sorted!")
-	} else {
-		log.Fatalf("ERROR SORTING: %v\n", test)
-	}
 }
