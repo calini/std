@@ -1,3 +1,4 @@
+// WIP
 package collection
 
 type Element interface{}
