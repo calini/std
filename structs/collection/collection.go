@@ -5,6 +5,7 @@ type Element interface{}
 
 type Iterator interface{}
 
+// Derived from java.util.AbstractCollection
 type Collection interface {
 	// ensures that this collection contains the specified element (optional operation)
 	Add(e Element) bool
